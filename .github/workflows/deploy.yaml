@@ -6,6 +6,9 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
       - name: Checkout code
@@ -22,6 +25,6 @@ jobs:
 
       - name: Login to AWS and push to Lightsail
         run: aws lightsail push-container-image --region us-east-2 --service-name container-service-1 --label cf-deploy-2 --image cf-deploy:latest
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Make new deployment
+        run: chmod +x ./deploy_lightsail.sh && ./deploy_lightsail.sh
