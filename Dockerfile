@@ -17,4 +17,5 @@ RUN npm run build
 EXPOSE 3000
 
 # Define comando de entrada al contenedor
-CMD ["sh", "-c", "npm run start:prod"]
+# CMD ["sh", "-c", "npm run start:prod"]
+CMD npm run start:prod
