@@ -10,7 +10,7 @@ COPY . .
 # Instalando dependencias necesarias
 RUN npm install
 
-# Construyendo la aplicación
+# Compilar la aplicación
 RUN npm run build
 
 # Exponiendo el puerto en el que la aplicación escuchará
